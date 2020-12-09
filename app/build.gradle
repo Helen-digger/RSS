@@ -1,0 +1,137 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        applicationId "com.example.rss"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    lintOptions {
+        warning 'InvalidPackage'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "com.squareup.retrofit2:retrofit:2.4.0"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
+    compile("com.squareup.retrofit2:converter-simplexml:2.0.0") {
+        exclude group: 'xpp3', module: 'xpp3'
+        exclude group: 'stax', module: 'stax-api'
+        exclude group: 'stax', module: 'stax'
+    }
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+    // https://mvnrepository.com/artifact/com.google.dagger/dagger
+
+    implementation "com.facebook.stetho:stetho:1.5.0"
+    implementation "com.facebook.stetho:stetho-okhttp3:1.5.0"
+    implementation "com.google.code.gson:gson:2.8.5"
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha3'
+    implementation 'com.google.android.material:material:1.0.0-alpha3'
+    implementation 'androidx.cardview:cardview:1.0.0-alpha3'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha3'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation "org.jetbrains.anko:anko-design:0.10.5"
+
+    implementation 'com.github.florent37:diagonallayout:1.0.7'
+    // https://mvnrepository.com/artifact/com.flaviofaria/kenburnsview
+    compile group: 'com.flaviofaria', name: 'kenburnsview', version: '1.0.7'
+    //annotationProcessor 'androidx.room:room-compiler:2.2.2'
+
+
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
+    kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    //implementation "androidx.room:room-runtime:2.0.0-alpha1"
+    //kapt "androidx.room:room-compiler:2.0.0-alpha1"
+
+    // implementation "androidx.room:room-runtime:2.2.5"
+    //kapt "androidx.room:room-compiler:2.2.5"
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    //implementation "androidx.room:room-ktx:2.2.5"
+
+    // optional - Test helpers
+    //testImplementation "androidx.room:room-testing:2.2.5"
+
+    // Dagger 2
+    implementation "com.google.dagger:dagger:2.14.1"
+    kapt "com.google.dagger:dagger-compiler:2.14.1"
+    compileOnly "org.glassfish:javax.annotation:3.1.1"
+
+    //Rx
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "com.squareup.retrofit2:converter-moshi:2.3.0"
+
+    // Data binding
+    kapt "com.android.databinding:compiler:3.1.4"
+
+    //compile("javax.annotation:javax.annotation-api:1.3.2")
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
+    implementation 'com.android.support:design:28.0.0'
+
+    implementation 'jp.wasabeef:picasso-transformations:2.1.0'
+    // If you want to use the GPU Filters
+    implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
+
+
+    implementation "androidx.fragment:fragment:1.2.5"
+    // Kotlin
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    // https://mvnrepository.com/artifact/androidx.multidex/multidex
+    compile group: 'androidx.multidex', name: 'multidex', version: '2.0.1'
+
+
+    //kapt "com.jakewharton:butterknife-compiler:8.6.0"
+    //compile "com.jakewharton:butterknife:8.6.0"
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:1.5.1"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.1"
+
+}
