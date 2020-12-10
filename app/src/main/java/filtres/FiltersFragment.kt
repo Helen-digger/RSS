@@ -1,6 +1,7 @@
 package filtres
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import base.BaseFragment
@@ -10,6 +11,7 @@ import kotlinx.android.synthetic.main.filter_fragment.*
 import kotlinx.android.synthetic.main.rss_fragment.*
 import rss.RssContract
 import rss.RssItemAdapter
+import util.FilterTypes
 import javax.inject.Inject
 
 class FiltersFragment : BaseFragment(), FilterContract.View {
@@ -32,4 +34,5 @@ class FiltersFragment : BaseFragment(), FilterContract.View {
     override fun inject(component: PresenterInjector) {
         component.inject(this)
     }
+
 }

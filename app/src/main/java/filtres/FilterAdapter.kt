@@ -7,21 +7,26 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions.bitmapTransform
 import com.example.rssreader.R
-import com.squareup.picasso.Picasso
-import jp.wasabeef.picasso.transformations.BlurTransformation
+import jp.wasabeef.glide.transformations.BlurTransformation
+import jp.wasabeef.glide.transformations.gpu.ContrastFilterTransformation
+import jp.wasabeef.glide.transformations.gpu.InvertFilterTransformation
+import jp.wasabeef.glide.transformations.gpu.SepiaFilterTransformation
 import kotlinx.android.synthetic.main.filter_list_item.view.*
 import util.FilterTypes
-import util.filters.ContrastTransformation
-import util.filters.InvertTransformation
-import util.filters.SepiaTransformation
 
 
 class FilterAdapter(private val context: Context)
     : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
 
     private val types = FilterTypes.values()
+    private var selectedIndex = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.filter_list_item, parent, false)
@@ -35,31 +40,34 @@ class FilterAdapter(private val context: Context)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        when (types[position]) {
            FilterTypes.Blur ->
-               Picasso.with(context)
+               Glide.with(context)
                    .load(R.drawable.demo)
-                   .transform(BlurTransformation(context, 25, 1))
+                   .apply(bitmapTransform(FilterTypes.Blur.getTransformationByName()))
                    .into(holder.image)
            FilterTypes.Contrast ->
-               Picasso.with(context)
+               Glide.with(context)
                    .load(R.drawable.demo)
-                   .transform(ContrastTransformation(context))
+                   .apply(bitmapTransform(ContrastFilterTransformation()))
                    .into(holder.image)
            FilterTypes.Sepia ->
-               Picasso.with(context)
+               Glide.with(context)
                    .load(R.drawable.demo)
-                   .transform(SepiaTransformation(context))
+                   .transform(SepiaFilterTransformation())
                    .into(holder.image)
            FilterTypes.Invert ->
-               Picasso.with(context)
+               Glide.with(context)
                    .load(R.drawable.demo)
-                   .transform(InvertTransformation(context))
+                   .transform(InvertFilterTransformation())
                    .into(holder.image)
 
        }
         holder.title.text = types[position].name
 
+
         holder.itemView.setOnClickListener {
-            Toast.makeText(context, "!!!!!!!!!!!!!!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, types[position].name, Toast.LENGTH_SHORT).show()
+            val manager = (holder.itemView.context as FragmentActivity).supportFragmentManager
+            manager.setFragmentResult("filter", bundleOf("imageFilter" to types[position].name))
         }
     }
 

@@ -2,28 +2,36 @@ package rss
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.setFragmentResultListener
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.rssreader.R
 import com.example.rssreader.databinding.RssItemLayoutBinding
-import com.squareup.picasso.Picasso
 import detail.ItemReadActivity
 import kotlinx.android.synthetic.main.rss_item_layout.view.*
 import model.RssItemObject
+import util.FilterTypes
 import java.util.ArrayList
 
 class RssItemAdapter(private val context: Context) : RecyclerView.Adapter<RssItemAdapter.ViewHolder>() {
 
     private val items = ArrayList<RssItemObject>()
+    private var filter : FilterTypes? = null
 
     fun setItems(rssItems: List<RssItemObject>) {
         items.clear()
         items.addAll(rssItems)
         notifyDataSetChanged()
+    }
+
+    fun setFilter(filter : FilterTypes) {
+        this.filter = filter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,6 +51,10 @@ class RssItemAdapter(private val context: Context) : RecyclerView.Adapter<RssIte
         }
 
         holder.bind(items[position])
+        if (filter != null) {
+            Glide.with(context).load(R.drawable.demo).transform(filter?.getTransformationByName())
+                .into(holder.imageThumb)
+        }
     }
 
     class ViewHolder(private val binding: RssItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
