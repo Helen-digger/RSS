@@ -1,7 +1,5 @@
 package model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import org.simpleframework.xml.*
 import java.io.Serializable
 
@@ -50,38 +48,19 @@ data class RssItemObject(
     @field:Element(name = "enclosure", required=false)
     var enclosure: RssEnclosureObject? = null
 
-    /*var imageUrl: String? = null,
-
-    var channelKey: String? = null,
-
-    var isRead: Int*/
-
 ): Serializable  {
-    constructor() : this("","","","","", enclosure = null)
-}/*{
+    constructor() : this("","","","","",
+        RssEnclosureObject("", "", ""))
 
-    constructor()
-
-    companion object {
-        val READ = 1
-    }
-
-    fun setChannelUrl(channelUrl: String?) {
-        channelKey = channelUrl
-    }
-
-    fun setImageLink(imageUrl: String?) {
-        this.imageUrl = imageUrl
-    }
-
-    fun getDescriptionImage(description: String?) : String {
-        return if (description!!.contains("img src=", false)) {
-           description.substringAfter("<img src=\"").substringBefore("\">")
-        } else {
-            ""
+    fun getUrlImage() : String {
+        if (this.description!!.contains("img src=", false)) {
+           return this.description!!.substringAfter("<img src=\"").substringBefore("\">")
+        } else if (!this.enclosure!!.url.isNullOrEmpty()) {
+            return this.enclosure!!.url!!;
         }
+        return ""
     }
-}*/
+}
 
 @Root(name = "image", strict = false)
 data class RSSImageObject (
@@ -97,16 +76,12 @@ data class RSSImageObject (
 
 @Root(name = "enclosure", strict = false)
 data class RssEnclosureObject(
-    @field:Element(name = "url")
+    @field:Attribute(name = "url", required = false)
     var url: String? = null,
 
-    @field:Element(name = "type")
+    @field:Attribute(name = "type", required = false)
     var type: String? = null,
 
-    @field:Element(name = "length")
+    @field:Attribute(name = "length", required = false)
     var length: String? = null
-): Serializable {
-    override fun toString(): String {
-        return "$url, $type, $length"
-    }
-}
+): Serializable

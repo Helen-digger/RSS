@@ -54,6 +54,10 @@ class RssFragment : BaseFragment(), RssContract.View, SwipeRefreshLayout.OnRefre
         adapter.setItems(rssItems)
     }
 
+    override fun onChannelImage(url: String) {
+        adapter.setChannelLogo(url)
+    }
+
     override fun onRefresh() {
         presenter.loadRssItems()
     }

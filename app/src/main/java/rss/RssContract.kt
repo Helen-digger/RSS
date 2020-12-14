@@ -15,5 +15,6 @@ interface RssContract {
     // Action callbacks. Activity/Fragment will implement
     interface View : BaseView {
         fun onRssItemsLoaded(rssItems: List<RssItemObject>)
+        fun onChannelImage(url : String)
     }
 }
