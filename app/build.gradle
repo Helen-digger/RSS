@@ -48,19 +48,20 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.core:core-ktx:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.preference:preference:1.1.0-rc01'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
     implementation "com.squareup.retrofit2:retrofit:2.4.0"
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
-    compile("com.squareup.retrofit2:converter-simplexml:2.0.0") {
+    implementation("com.squareup.retrofit2:converter-simplexml:2.0.0") {
         exclude group: 'xpp3', module: 'xpp3'
         exclude group: 'stax', module: 'stax-api'
         exclude group: 'stax', module: 'stax'
     }
     // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.9.0'
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
     // https://mvnrepository.com/artifact/com.google.dagger/dagger
 
@@ -73,7 +74,7 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0-alpha3'
 
     implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
@@ -82,7 +83,7 @@ dependencies {
 
     implementation 'com.github.florent37:diagonallayout:1.0.7'
     // https://mvnrepository.com/artifact/com.flaviofaria/kenburnsview
-    compile group: 'com.flaviofaria', name: 'kenburnsview', version: '1.0.7'
+    implementation group: 'com.flaviofaria', name: 'kenburnsview', version: '1.0.7'
     //annotationProcessor 'androidx.room:room-compiler:2.2.2'
 
 
@@ -119,7 +120,6 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.0.1'
-    implementation 'com.android.support:design:28.0.0'
 
     // If you want to use the GPU Filters
     implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
@@ -129,7 +129,7 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.3.0-beta01"
 
     // https://mvnrepository.com/artifact/androidx.multidex/multidex
-    compile group: 'androidx.multidex', name: 'multidex', version: '2.0.1'
+    implementation group: 'androidx.multidex', name: 'multidex', version: '2.0.1'
 
 
     //kapt "com.jakewharton:butterknife-compiler:8.6.0"
@@ -139,7 +139,7 @@ dependencies {
     releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:1.5.1"
 
     // https://mvnrepository.com/artifact/com.cloudinary/cloudinary-android
-    compile group: 'com.cloudinary', name: 'cloudinary-android', version: '1.30.0'
+    implementation group: 'com.cloudinary', name: 'cloudinary-android', version: '1.30.0'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 
 

@@ -42,7 +42,7 @@ class FilterAdapter(private val context: Context)
            FilterTypes.Blur ->
                Glide.with(context)
                    .load(R.drawable.demo)
-                   .apply(bitmapTransform(FilterTypes.Blur.getTransformationByName()))
+                   .apply(bitmapTransform(FilterTypes.Blur.getTransformationByName()!!))
                    .into(holder.image)
            FilterTypes.Contrast ->
                Glide.with(context)

@@ -8,6 +8,11 @@ import jp.wasabeef.glide.transformations.gpu.SepiaFilterTransformation
 
 enum class FilterTypes {
 
+    None {
+        override fun getTransformationByName(): BitmapTransformation? {
+            return null
+        }
+    },
     Blur {
         override fun getTransformationByName(): BitmapTransformation {
             return BlurTransformation()
@@ -29,7 +34,7 @@ enum class FilterTypes {
         }
     };
 
-    abstract fun getTransformationByName() : BitmapTransformation
+    abstract fun getTransformationByName() : BitmapTransformation?
 
     companion object {
         fun getByName(name : String) : FilterTypes {

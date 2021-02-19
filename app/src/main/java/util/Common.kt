@@ -9,7 +9,7 @@ object Common {
     val BASE_URL = "https://habr.com/ru/rss/hubs/all/"//"https://habr.com/ru/rss/hubs/all/"
 
     /*companion object {
-        private const val RSS_FILE = "rss.json"
+        private const val RSS_FILE = "rss.txt"
     }
 
     fun parseDefaultChannelsName(): List<String> {

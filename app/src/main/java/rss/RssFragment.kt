@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.setFragmentResultListener
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import base.BaseFragment
@@ -40,6 +41,14 @@ class RssFragment : BaseFragment(), RssContract.View, SwipeRefreshLayout.OnRefre
         recycler_view_source_name.adapter = adapter
         scroll_view.setOnRefreshListener(this)
         presenter.loadRssItems()
+
+        val defaultFilter = PreferenceManager.getDefaultSharedPreferences(activity)
+            .getString("filter", null).let {
+                if (it != null) {
+                    adapter.setFilter(FilterTypes.getByName(it))
+                    adapter.notifyDataSetChanged();
+                }
+            }
 
         setFragmentResultListener("filter") {
             requestKey, bundle ->

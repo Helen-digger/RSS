@@ -87,7 +87,6 @@ class RssItemAdapter(private val context: Context) : RecyclerView.Adapter<RssIte
                }
            }
        }
-
     }
 
     class ViewHolder(private val binding: RssItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
